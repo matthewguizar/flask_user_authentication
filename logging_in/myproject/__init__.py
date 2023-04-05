@@ -10,11 +10,10 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "MYSECRET"
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path(basedir, "data.sqlite")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir, "data.sqlite")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-with app.app_context():
-    db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 Migrate(app, db)
 
 login_manager.init_app(app)
